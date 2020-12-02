@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>~ Avento ~</title>
+    <link rel="shortcut icon" type="image/gif" href="css/img/logo.png"/>
+	
+	
+    <link href="css/fonts.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/decoration.css" rel="stylesheet" type="text/css">
+    
+	
+	
+	
+	<!--<script src="scripts/jquery-3.1.1.min.js"/>-->
+    <script>
+        var max_z_index = 1;
+        var music_playing = false;
+        var last_moved_front = '';
+        
+        function move_front(id) {
+            if (last_moved_front === id) {
+                return;
+			}
+			last_moved_front = id;
+			
+            document.getElementById(id).style.top = '-100%';
+            
+            rgba_color =  'rgba(' + Math.floor(Math.random() * 64 + 192) + ',' + Math.floor(Math.random() * 64 + 192) + ',' + Math.floor(Math.random() * 64 + 192) + ',' + 0.25 + ')';
+            document.getElementById(id).style.boxShadow = 'inset 0 0 0 1000px ' + rgba_color;
+            
+            max_z_index += 1;
+            setTimeout(function () {
+                document.getElementById(id).style.top = '0';
+                document.getElementById(id).style.zIndex = max_z_index;
+            }, 500);
+        }
+        
+        
+        window.onload = function() {
+			var day = (new Date(new Date() - new Date(2017, 12, 1))).getDate();
+			var days_left  = (new Date(new Date(2017, 12, 25) - new Date())).getDate();
+			document.getElementById('day').innerHTML = day;
+			document.getElementById('days-left').innerHTML = days_left;
+			
+            myAudio = new Audio('res/' + day + '.mp3');
+            myAudio.loop = true;
+            myAudio.volume = 1.0;
+            //myAudio.play();
+            music_playing = true;
+
+
+
+			var buttons = document.getElementsByClassName('day-button');
+			for(var i = 0; i < buttons.length; i++) {
+				var button = buttons[i];
+				button.onclick = function(event) {
+					event.preventDefault();
+					var url = this.href + '';
+					if (url.includes('mp3')) {
+						myAudio.pause();
+									
+						myAudio = new Audio(url);
+						myAudio.loop = true;
+						myAudio.volume = 1.0;
+						myAudio.play();
+						music_playing = true;
+						
+                        var video = document.getElementById("logo");
+                        video.getElementsByTagName("source")[0].src = url.replace(/mp3$/, "mp4")
+                        video.play(); 
+					}
+				}
+			}
+			/*
+            document.getElementById('logo-button').onclick = function () {
+                move_front('home-content');
+            }
+            */
+            
+            
+
+            document.getElementById('music-toggle').onclick = function() {
+                if (music_playing) {
+                    myAudio.pause();
+                    document.getElementById("logo").pause(); 
+                    
+                } else {
+                    myAudio.play();
+                    document.getElementById("logo").play(); 
+                    
+                }
+                music_playing = !music_playing;
+            }
+            
+            
+            
+        };
+    </script>
+</head>
+<body>
+
+<header>
+  <video id="logo" width="640" height="192" loop>
+    <source src="res/1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> 
+</header>
+<span class="ornament"></span>
+
+<nav>
+    <ul>
+        <li><a id="day" href="#"></a></li>
+        <li><a id="dash" href="#">-</a></li>
+        <li><a id="days-left" href="#"></a></li>
+    </ul>
+</nav>
+<span class="ornament"></span>
+
+<div id="content-wrapper">
+    <div id="left-bar"><div class="decoration-column"></div></div>
+    <div id="content">
+		<table id="aventoo">
+			<tr>
+				<th> </th>
+				<th> <a href="res/1.mp3" class="day-button" style="background-image: url(res/1.png);" onclick="play_video()"></a></th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+			</tr>
+			<tr>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+			</tr>
+			<tr>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+			</tr>
+			<tr>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> </th>
+				<th> </th>
+			</tr>
+		</table> 
+	</div>
+        
+    <div id="right-bar"><div class="decoration-column"></div></div>
+</div>
+<span class="ornament"></span>
+
+<footer><a id="music-toggle" href="#">Toggle music</a></footer>
+
+
+</body>
+</html>

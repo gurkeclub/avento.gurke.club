@@ -1,0 +1,135 @@
+html {
+    background: #000;
+
+    text-align: center;
+}
+
+body {
+    width: 640px;
+    margin: auto;
+    margin-top: 2em;
+}
+
+
+
+header {
+    position: relative;
+    overflow: hidden;
+    background: rgba(0.0, 0.0, 0.0, 0.0);
+    height: 192px;
+}
+
+
+
+
+#logo img {
+    display: block;
+    height: 7em;
+    width: auto;
+    margin: auto;
+}
+
+nav {
+
+}
+
+nav ul {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: #000;
+    color: #FFF;
+
+    list-style: none;
+
+
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 2em;
+    margin-right: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    height: 1.5em;
+    line-height: 1.65em;
+
+    letter-spacing: 0.2em;
+
+    font-family: "CODE Bold";
+
+}
+
+
+#content-wrapper {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+
+}
+
+#content-wrapper > div {
+    display: table-cell;
+    position: relative;
+}
+
+#left-bar, #right-bar {
+}
+
+#content {
+    flex: 1;
+
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+
+    background: #FFF;
+
+    overflow: hidden;
+
+    letter-spacing: 0.1em;
+
+    font-family: "CODE Bold";
+}
+
+.content_element {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+
+    width: 100%;
+    height: 100%;
+
+    background: inherit;
+
+    background-image: url("img/decorations/marble/A/main.png");
+    background-repeat: repeat;
+
+    transition-property: top, bottom;
+    transition-duration: 0.5s;
+}
+
+
+
+
+footer {
+
+    text-align: right;
+
+    font-family: "CODE Bold";
+    color: #FFF;
+    font-size: 0.75em;
+
+    /*background-image: url("/img/decorations/ornaments/C/main.png");
+    background-size: auto 100%;
+    background-repeat: repeat-x;*/
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}

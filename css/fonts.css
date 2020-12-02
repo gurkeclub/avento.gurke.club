@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CODE Bold'; /*a name to be used later*/
+    src: url('fonts/CODE Bold.otf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'CODE Light'; /*a name to be used later*/
+    src: url('fonts/CODE Light.otf'); /*URL to font*/
+}

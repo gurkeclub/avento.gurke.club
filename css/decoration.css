@@ -1,0 +1,111 @@
+
+
+#content {
+    background: inherit;
+
+    background-image: url("img/main.png");
+    background-repeat: repeat;
+}
+
+
+.decoration-column {
+    min-height: 160px;
+
+    height: 100%;
+    width: 22px;
+
+    position: relative;
+
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-image: url("img/tilemap/tile_14.png");
+    background-repeat: repeat-y;
+    
+    background-size: 100% auto;
+}
+
+
+.decoration-column::before {
+    content: "";
+
+    display: inline-block;
+
+    position: absolute;
+    top: 0;
+    left:0;
+
+    width: 22px;
+    height: 22px;
+
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-image: url("img/tilemap/tile_03.png");
+    background-size: 100% 100%;
+}
+
+.decoration-column::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left:0;
+
+    display: inline-block;
+
+    width: 22px;
+    height: 22px;
+
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-image: url("img/tilemap/tile_25.png");
+    background-size: 100% 100%;
+}
+
+.ornament {
+    display: block;
+
+    width: 100%;
+    height: 22px;
+
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-image: url("img/tilemap/tile_34.png");
+    background-size: auto 100%;
+    background-repeat: repeat-x;
+}
+
+
+
+.day-button  {
+    display: inline-block;
+    width: 4em;
+    height: 3.375em;
+    
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    background-size: 100% 100%;
+    
+    box-shadow: 0 0 2px rgba(0, 112, 255, 0.44);
+    border-radius: 4px;
+}
+#aventoo {
+    margin: auto;
+    padding: 0.1em;
+    background-color: rgba(121, 195, 232, 0.43);
+    box-shadow: 0 0 16px rgba(0, 46, 104, 0.37);
+}
+
+.hidden {
+    background-image: url(img/hidden.gif);
+}
+
+.none {
+    background-color: #000;
+}
+
+	
