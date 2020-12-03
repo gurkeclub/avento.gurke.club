@@ -44,17 +44,24 @@
 			document.getElementById('day').innerHTML = day;
 			document.getElementById('days-left').innerHTML = days_left;
 			
-            myAudio = new Audio('res/' + day + '.mp3');
-            myAudio.loop = true;
-            myAudio.volume = 1.0;
-            //myAudio.play();
-            music_playing = true;
+			
 
 
 
 			var buttons = document.getElementsByClassName('day-button');
 			for(var i = 0; i < buttons.length; i++) {
 				var button = buttons[i];
+				if (i == day - 1) {
+                    myAudio= new Audio(	button.href);
+                    myAudio.loop = true;
+                    myAudio.volume = 1.0;
+                
+                    var video = document.getElementById("logo");
+                    video.getElementsByTagName("source")[0].src = button.href.replace(/mp3$/, "mp4")
+                    video.load();
+                    //myAudio.play();
+                    //music_playing = true;
+                }
 				button.onclick = function(event) {
 					event.preventDefault();
 					var url = this.href + '';
@@ -69,6 +76,7 @@
 						
                         var video = document.getElementById("logo");
                         video.getElementsByTagName("source")[0].src = url.replace(/mp3$/, "mp4")
+                        video.load();
                         video.play(); 
 					}
 				}
@@ -103,7 +111,7 @@
 
 <header>
   <video id="logo" width="640" height="192" loop>
-    <source src="res/1.mp4" type="video/mp4">
+    <source src="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video> 
 </header>
@@ -124,8 +132,8 @@
 		<table id="aventoo">
 			<tr>
 				<th> </th>
-				<th> <a href="res/1.mp3" class="day-button" style="background-image: url(res/1.png);" onclick="play_video()"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp3" class="day-button" style="background-image: url(res/1/door.png);" onclick="play_video()"></a></th>
+				<th> <a href="res/2/Carlos Tiger, Malonchik - Waters.mp3" class="day-button" style="background-image: url(res/2/door.png);" onclick="play_video()"></a></th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
