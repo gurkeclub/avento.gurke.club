@@ -75,8 +75,12 @@
 						music_playing = true;
 						
                         var video = document.getElementById("logo");
-                        video.getElementsByTagName("source")[0].src = url.replace(/mp3$/, "mp4")
-                        video.load();
+                        var new_url = url.replace(/mp3$/, "mp4");
+                        if (video.getElementsByTagName("source")[0].src.localeCompare(new_url) != 0) {
+                          video.getElementsByTagName("source")[0].src = new_url;
+                          video.load();
+                        }
+                        video.currentTime = 0;
                         video.play(); 
 					}
 				}
@@ -132,9 +136,9 @@
 		<table id="aventoo">
 			<tr>
 				<th> </th>
-				<th> <a href="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp3" class="day-button" style="background-image: url(res/1/door.png);" onclick="play_video()"></a></th>
-				<th> <a href="res/2/Carlos Tiger, Malonchik - Waters.mp3" class="day-button" style="background-image: url(res/2/door.png);" onclick="play_video()"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a href="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp3" class="day-button" style="background-image: url(res/1/door.png);"></a></th>
+				<th> <a href="res/2/Carlos Tiger, Malonchik - Waters.mp3" class="day-button" style="background-image: url(res/2/door.png);"></a></th>
+				<th> <a href="res/3/Malonchik - Before we knew.mp3" class="day-button" style="background-image: url(res/3/door.png);"></a></th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
