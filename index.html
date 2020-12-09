@@ -15,28 +15,7 @@
 	
 	<!--<script src="scripts/jquery-3.1.1.min.js"/>-->
     <script>
-        var max_z_index = 1;
-        var music_playing = false;
-        var last_moved_front = '';
-        
-        function move_front(id) {
-            if (last_moved_front === id) {
-                return;
-			}
-			last_moved_front = id;
-			
-            document.getElementById(id).style.top = '-100%';
-            
-            rgba_color =  'rgba(' + Math.floor(Math.random() * 64 + 192) + ',' + Math.floor(Math.random() * 64 + 192) + ',' + Math.floor(Math.random() * 64 + 192) + ',' + 0.25 + ')';
-            document.getElementById(id).style.boxShadow = 'inset 0 0 0 1000px ' + rgba_color;
-            
-            max_z_index += 1;
-            setTimeout(function () {
-                document.getElementById(id).style.top = '0';
-                document.getElementById(id).style.zIndex = max_z_index;
-            }, 500);
-        }
-        
+        var music_playing = false;        
         
         window.onload = function() {
 			var day = (new Date(new Date() - new Date(2017, 12, 1))).getDate();
@@ -59,8 +38,6 @@
                     var video = document.getElementById("logo");
                     video.getElementsByTagName("source")[0].src = button.href.replace(/mp3$/, "mp4")
                     video.load();
-                    //myAudio.play();
-                    //music_playing = true;
                 }
 				button.onclick = function(event) {
 					event.preventDefault();
@@ -146,7 +123,7 @@
 			<tr>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a title="Medanne - Tpazo" href="res/8/Medanne - Tpazo.mp3" class="day-button" style="background-image: url(res/8/door.png);"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+				<th> <a title="Malonchik - STB" href="res/9/Malonchik - STB.mp3" class="day-button" style="background-image: url(res/9/door.png);"></a></th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
 				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
