@@ -1,0 +1,119 @@
+(
+    view: (
+        bpm: 166.5,
+        width: 640,
+        height: 192,
+        fullscreen: false,
+        target_fps: 50,
+        dynamic: true,
+        vsync: true,
+        screenshot: false,
+        screenshot_path: "output/",
+        locked_speed: false,
+    ),
+    server: (
+        ip: "127.0.0.1",
+        port: 3000,
+        enable: false,
+    ),
+    inputs: {
+        "Cat": (
+            type: "Video",
+            path: "res/cat.mp4",
+            width: 320,
+            height: 192,
+            speed: (Fps: 25.0),
+        ),
+        "Demon": (
+            type: "Picture",
+            path: "res/Vrubel_Demon_Seated.jpg",
+            width: 320,
+            height: 192,
+        ), 
+    },
+    filters: {
+        "scene": (
+            inputs: [
+                "iChannel0",
+                "iChannel1",
+            ],
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/scene.fs.glsl",
+            ],
+            variables: {},
+        ),
+
+        "feedback": (
+            inputs: [
+                "iChannel0",
+                "iChannel1",
+            ],
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/feedback.fs.glsl",
+            ],
+            variables: {},
+        ),
+
+        "target": (
+            inputs: [
+                "iChannel0",
+            ],  
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],  
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/target.fs.glsl",
+            ],  
+            variables: {},
+        ),
+    },
+    render_chain: [  
+        (
+            name: "Scene",
+            filter: "scene",
+            inputs: {
+                "iChannel0": Linear("Cat"),
+                "iChannel1": Nearest("Demon"),
+            },
+            variables: {},
+            precision: F32,
+        ),
+        (
+            name: "Feedback",
+            filter: "feedback",
+            inputs: {
+                "iChannel0": Linear("Scene"),
+                "iChannel1": Nearest("Feedback"),
+            },
+            variables: {},
+            precision: F32,
+        ),
+
+
+    ],
+
+    final_stage: (
+        name: "target",
+        filter: "target",
+        inputs: {
+            "iChannel0": Mipmaps("Feedback"),
+        },
+        variables: {},
+        precision: U8,
+    ),
+)

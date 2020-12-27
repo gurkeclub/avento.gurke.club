@@ -1,0 +1,134 @@
+(
+    view: (
+        bpm: 133,
+        width: 640,
+        height: 192,
+        fullscreen: false,
+        target_fps: 50,
+        dynamic: true,
+        vsync: true,
+        screenshot: false,
+        screenshot_path: "output/",
+        locked_speed: false,
+    ),
+    server: (
+        ip: "127.0.0.1",
+        port: 3000,
+        enable: false,
+    ),
+    inputs: {
+        "Flag": (
+            type: "Picture",
+            width: 718,
+            height: 570,
+            path: "res/flag.bmp",
+        ),
+        "Top": (
+            type: "Picture",
+            width: 320,
+            height: 320,
+            path: "res/top.bmp",
+        ),
+        "Gena": (
+            type: "Picture",
+            width: 640,
+            height: 760,
+            path: "res/gena.bmp",
+        ),
+        "Chib": (
+            type: "Picture",
+            width: 640,
+            height: 560,
+            path: "res/chib.bmp",
+        ),
+    },
+    filters: {
+        "scene": (
+            inputs: [
+                "iChannel0",
+                "iChannel1",
+                "iChannel2",
+                "iChannel3",
+            ],
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/scene.fs.glsl",
+            ],
+            variables: {},
+        ),
+
+        "feedback": (
+            inputs: [
+                "iChannel0",
+                "iChannel1",
+            ],
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/feedback.fs.glsl",
+            ],
+            variables: {},
+        ),
+
+        "target": (
+            inputs: [
+                "iChannel0",
+            ],  
+            vertex_shader: [
+                "#std/default.vs.glsl",
+            ],  
+            fragment_shader: [
+                "#std/header.glsl",
+                "#std/noise.glsl",
+                "#std/misc.glsl",
+                "src/target.fs.glsl",
+            ],  
+            variables: {},
+        ),
+    },
+    render_chain: [  
+        (
+            name: "Scene",
+            filter: "scene",
+            inputs: {
+                "iChannel0": Linear("Flag"),
+                "iChannel1": Linear("Top"),
+                "iChannel2": Mipmaps("Gena"),
+                "iChannel3": Mipmaps("Chib"),
+            },
+            variables: {},
+            precision: F32,
+        ),
+        (
+            name: "Feedback",
+            filter: "feedback",
+            inputs: {
+                "iChannel0": Linear("Scene"),
+                "iChannel1": Linear("Feedback"),
+            },
+            variables: {},
+            precision: F32,
+        ),
+
+
+    ],
+
+    final_stage: (
+        name: "target",
+        filter: "target",
+        inputs: {
+            "iChannel0": Mipmaps("Feedback"),
+        },
+        variables: {},
+        precision: U8,
+    ),
+)
