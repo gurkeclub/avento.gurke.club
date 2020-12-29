@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <title>~ Avento ~</title>
     <link rel="shortcut icon" type="image/gif" href="css/img/logo.png"/>
-	
-	
+    
+    
     <link href="css/fonts.css" rel="stylesheet" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
     <link href="css/decoration.css" rel="stylesheet" type="text/css">
     
-	
-	
-	
-	<!--<script src="scripts/jquery-3.1.1.min.js"/>-->
+    
+    
+    
+    <!--<script src="scripts/jquery-3.1.1.min.js"/>-->
     <script>
         var music_playing = false;        
+        var myAudio = null;
         
         window.onload = function() {
-			var day = (new Date(new Date() - new Date(2017, 12, 1))).getDate();
-			var days_left  = (new Date(new Date(2017, 12, 25) - new Date())).getDate();
-			document.getElementById('day').innerHTML = day;
-			document.getElementById('days-left').innerHTML = days_left;
-			
-			
+            var day = (new Date(new Date() - new Date(2017, 12, 1))).getDate();
+            var days_left  = (new Date(new Date(2017, 12, 25) - new Date())).getDate();
+            document.getElementById('day').innerHTML = day;
+            document.getElementById('days-left').innerHTML = days_left;
+            
+            
 
 
 
-			var buttons = document.getElementsByClassName('day-button');
-			for(var i = 0; i < buttons.length; i++) {
-				var button = buttons[i];
-				if (i == day - 1) {
+            var buttons = document.getElementsByClassName('day-button');
+            for(var i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
+                if (i == day - 1) {
                     myAudio= new Audio(	button.href);
                     myAudio.loop = true;
                     myAudio.volume = 1.0;
@@ -39,18 +40,20 @@
                     video.getElementsByTagName("source")[0].src = button.href.replace(/mp3$/, "mp4")
                     video.load();
                 }
-				button.onclick = function(event) {
-					event.preventDefault();
-					var url = this.href + '';
-					if (url.includes('mp3')) {
-						myAudio.pause();
-									
-						myAudio = new Audio(url);
-						myAudio.loop = true;
-						myAudio.volume = 1.0;
-						myAudio.play();
-						music_playing = true;
-						
+                button.onclick = function(event) {
+                    event.preventDefault();
+                    var url = this.href + '';
+                    if (url.includes('mp3')) {
+                        if (myAudio != null) {
+                          myAudio.pause();
+                       }
+                          
+                        myAudio = new Audio(url);
+                        myAudio.loop = true;
+                        myAudio.volume = 1.0;
+                        myAudio.play();
+                        music_playing = true;
+                        
                         var video = document.getElementById("logo");
                         var new_url = url.replace(/mp3$/, "mp4");
                         if (video.getElementsByTagName("source")[0].src.localeCompare(new_url) != 0) {
@@ -59,10 +62,10 @@
                         }
                         video.currentTime = 0;
                         video.play(); 
-					}
-				}
-			}
-			/*
+                    }
+                }
+            }
+            /*
             document.getElementById('logo-button').onclick = function () {
                 move_front('home-content');
             }
@@ -72,7 +75,9 @@
 
             document.getElementById('music-toggle').onclick = function() {
                 if (music_playing) {
-                    myAudio.pause();
+                    if (myAudio != null) {
+                      myAudio.pause();
+                    }
                     document.getElementById("logo").pause(); 
                     
                 } else {
@@ -110,46 +115,46 @@
 <div id="content-wrapper">
     <div id="left-bar"><div class="decoration-column"></div></div>
     <div id="content">
-		<table id="aventoo">
-			<tr>
-				<th> </th>
-				<th> <a title="Malonchik, Carlos Tiger - Careless Whisper" href="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp3" class="day-button" style="background-image: url(res/1/door.png);"></a></th>
-				<th> <a title="Carlos Tiger, Malonchik - Waters" href="res/2/Carlos Tiger, Malonchik - Waters.mp3" class="day-button" style="background-image: url(res/2/door.png);"></a></th>
-				<th> <a title="Malonchik - Before we knew" href="res/3/Malonchik - Before we knew.mp3" class="day-button" style="background-image: url(res/3/door.png);"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-			</tr>
-			<tr>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a title="Medane - Tpazo" href="res/8/Medane - Tpazo.mp3" class="day-button" style="background-image: url(res/8/door.png);"></a></th>
-				<th> <a title="Malonchik - STB" href="res/9/Malonchik - STB.mp3" class="day-button" style="background-image: url(res/9/door.png);"></a></th>
-				<th> <a title="Malonchik - Chip" href="res/10/Malonchik - Chip.mp3" class="day-button" style="background-image: url(res/10/door.png);"></a></th>
-				<th> <a title="Medane - Mariok" href="res/11/Medane - Mariok.mp3" class="day-button" style="background-image: url(res/11/door.png);"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-			</tr>
-			<tr>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a title="Malonchik - Neko" href="res/15/Malonchik - Neko.mp3" class="day-button" style="background-image: url(res/15/door.png);"></a></th>
-				<th> <a title="Malonchik - Broken Iron" href="res/16/Malonchik - Broken Iron.mp3" class="day-button" style="background-image: url(res/16/door.png);"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-			</tr>
-			<tr>
-				<th> <a title="IAI - Chib" href="res/21/IAI - Chib.mp3" class="day-button" style="background-image: url(res/21/door.png);"></a></th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
-				<th> </th>
-				<th> </th>
-			</tr>
-		</table> 
-	</div>
+        <table id="aventoo">
+            <tr>
+                <th> </th>
+                <th> <a title="Malonchik, Carlos Tiger - Careless Whisper" href="res/1/Malonchik, Carlos Tiger - Careless Whisper.mp3" class="day-button" style="background-image: url(res/1/door.png);"></a></th>
+                <th> <a title="Carlos Tiger, Malonchik - Waters" href="res/2/Carlos Tiger, Malonchik - Waters.mp3" class="day-button" style="background-image: url(res/2/door.png);"></a></th>
+                <th> <a title="Malonchik - Before we knew" href="res/3/Malonchik - Before we knew.mp3" class="day-button" style="background-image: url(res/3/door.png);"></a></th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+            </tr>
+            <tr>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a title="Medane - Tpazo" href="res/8/Medane - Tpazo.mp3" class="day-button" style="background-image: url(res/8/door.png);"></a></th>
+                <th> <a title="Malonchik - STB" href="res/9/Malonchik - STB.mp3" class="day-button" style="background-image: url(res/9/door.png);"></a></th>
+                <th> <a title="Malonchik - Chip" href="res/10/Malonchik - Chip.mp3" class="day-button" style="background-image: url(res/10/door.png);"></a></th>
+                <th> <a title="Medane - Mariok" href="res/11/Medane - Mariok.mp3" class="day-button" style="background-image: url(res/11/door.png);"></a></th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+            </tr>
+            <tr>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a title="Malonchik - Neko" href="res/15/Malonchik - Neko.mp3" class="day-button" style="background-image: url(res/15/door.png);"></a></th>
+                <th> <a title="Malonchik - Broken Iron" href="res/16/Malonchik - Broken Iron.mp3" class="day-button" style="background-image: url(res/16/door.png);"></a></th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+            </tr>
+            <tr>
+                <th> <a title="IAI - Chib" href="res/21/IAI - Chib.mp3" class="day-button" style="background-image: url(res/21/door.png);"></a></th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> <a href="res/hidden.mp3" class="day-button  hidden"></a> </th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </table> 
+    </div>
         
     <div id="right-bar"><div class="decoration-column"></div></div>
 </div>
